@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz – Biblioteki Cyfrowe</title>
+  <title>Quiz – Biometria i przetwarzanie mowy</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
     h1 { color: #333; }
@@ -14,361 +14,490 @@
   </style>
 </head>
 <body>
-  <h1>Quiz – Biblioteki Cyfrowe</h1>
+  <h1>Quiz – Biometria i przetwarzanie mowy</h1>
   <form id="quizForm"></form>
 
   <script>
     const quizData = [
       {
-        question: "Co bierze pod uwagę PageRank przy ocenianiu danej strony?",
+        question: "Diphones to jednostki:",
         options: [
-          "liczbę i ocenę stron kierujących do ocenianej strony",
-          "liczbę i ocenę stron, do których oceniana strona zawiera linki",
-          "liczbę odwiedzin danej strony odnotowaną w Google Analytics",
-          "liczbę słów kluczowych zgodnych z szukaną frazą"
+          "używane w syntezie w oparciu o reguły",
+          "używane w syntezie formantów",
+          "bezużyteczne w syntezie traktu artykulacyjnego",
+          "nazywane inaczej półsylabami"
         ],
-        correct: 0
+        correct: 2
       },
       {
-        question: "Jakie jest ograniczenie algorytmu PageRank w stosunku do nowych publikacji?",
+        question: "Wyróżnia się podaną niżej liczbę wzorców linii papilarnych:",
         options: [
-          "nowe publikacje mają niski wynik, bo nie są jeszcze cytowane",
-          "nowe publikacje mają zawyżony wynik ze względu na świeżość",
-          "nowe publikacje mają zawyżony wynik ze względu na cytowanie wysoko punktowanych publikacji",
-          "nowe publikacje mają niski wynik, bo młode publikacje domyślnie są uznawane za mniej ważne, dopóki się nie osiągną określonego wieku"
-        ],
-        correct: 0
-      },
-      {
-        question: "Jaka jest różnica między TrustRank a zwykłym PageRank?",
-        options: [
-          "TrustRank rozpoczyna analizę od zaufanych zasobów, aby lepiej odfiltrować spam, podczas gdy PageRank traktuje wszystkie strony jednakowo",
-          "TrustRank bierze pod uwagę liczbę pobrań/odwiedzin danego zasobu",
-          "TrustRank bierze pod uwagę tylko zasoby z określonej dziedziny/tematyki",
-          "TrustRank bierze pod uwagę treść zasobu, a nie graf odnośników/cytowań"
-        ],
-        correct: 0
-      },
-      {
-        question: "Jaka gra jako pierwsza w procesie aktywacji wymagała połączenia internetowego ze Steamem?",
-        options: [
-          "Half-Life",
-          "Team Fortress 2",
-          "Portal",
-          "Half-Life 2"
+          "8, ale niektóre mogą mieć kieszonkę",
+          "więcej niż ludzi na Ziemi",
+          "2^90",
+          "7, przy czym dwa mają po dwa warianty"
         ],
         correct: 3
       },
       {
-        question: "Jak nazywa się przenośna konsola stworzona przez Valve, która umożliwia granie w gry dostępne na bibliotece Steam?",
+        question: "10s nagrania głosu to:",
         options: [
-          "Steam Pad",
-          "Steam Remote",
-          "Steam Deck",
-          "Steam Link Mobile"
-        ],
-        correct: 2
-      },
-      {
-        question: "Jak nazywa się system umożliwiający twórcom publikowanie własnych modyfikacji i dodatków do gier na Steamie?",
-        options: [
-          "Steam Forge",
-          "Steam Workshop",
-          "Steam Direct",
-          "Steam Creators Hub"
-        ],
-        correct: 1
-      }
-    ,
-      {
-        question: "System klasyfikacji stworzony przez Paula Otleta to:",
-        options: [
-          "Klasyfikacja Dziesiętna Deweya",
-          "Klasyfikacja Dwukropkowa",
-          "Uniwersalna Klasyfikacja Dziesiętna",
-          "Klasyfikacja Biblioteki Kongresu"
-        ],
-        correct: 2
-      },
-      {
-        question: "Współpracownik Paula Otleta z którym stworzył Ogólnoświatowy Rejestr Bibliograficzny to:",
-        options: [
-          "Émile Verhaeren",
-          "Auguste Beernaert",
-          "Henri Dunant",
-          "Henri La Fontaine"
-        ],
-        correct: 3
-      },
-      {
-        question: "Oryginalne Mundaneum (zbudowane w 1910) znajdowało się:",
-        options: [
-          "W Brukseli, w Belgii",
-          "W Genewie, w Szwajcarii",
-          "W Charleroi, w Belgii",
-          "W Mons, w Belgii"
+          "ok. 1000 ramek",
+          "ok. 10000 ramek",
+          "ok. 100 ramek",
+          "ok. 1000 okien Hamminga"
         ],
         correct: 0
       },
       {
-        question: "Popularne archiwum stron internetowych, pozwalające na przeglądanie historycznych wersji witryn, będące inicjatywą projektu Internet Archive nazywa się:",
+        question: "LMSF:",
         options: [
-          "Wayback Machine",
-          "Webtime Machine",
-          "Wayback Engine",
-          "Webback Machine"
-        ],
-        correct: 0
-      },
-      {
-        question: "Projekt Internet Archive finansowany jest przez:",
-        options: [
-          "Darowizny od użytkowników i granty od fundacji",
-          "UNESCO",
-          "Mozilla Foundation",
-          "Bibliotekę Kongresu USA"
-        ],
-        correct: 0
-      },
-      {
-        question: "Organizacja Internet Archive została założona w roku:",
-        options: [
-          "1996",
-          "1993",
-          "2003",
-          "2006"
-        ],
-        correct: 0
-      },
-      {
-        question: "Który z serwisów prezentujących śpiewniki oferuje również chwyty na gitarę (akordy)?",
-        options: [
-          "Tekstowo.pl",
-          "Genius.com",
-          "Spiewnik.Wywrota.pl",
-          "Groove.pl"
-        ],
-        correct: 2
-      },
-      {
-        question: "Który ze sposobów zapisywania utworów muzycznych NIE jest dostępny w przedstawionych bibliotekach na wykładzie?",
-        options: [
-          "pięciolinia",
-          "diagram akordu",
-          "tabulatura",
-          "śpiewnik gitarowy"
-        ],
-        correct: 0
-      },
-      {
-        question: "Która z opcji uniemożliwia stworzenie tabulatury, którą można udostępnić w bibliotekach cyfrowych?",
-        options: [
-          "GuitarPro",
-          "Tabinator.com",
-          "Rosegarden",
-          "TuxGuitar"
+          "obliczany jest za pomocą algorytmy Baum-Welch",
+          "jest wykładnikiem potęgi modelu języka",
+          "jest wykładnikiem potęgi modelu akustycznego",
+          "wynika z niedoszacowania modelu języka"
         ],
         correct: 1
       },
       {
-        question: "Wskaźnik Impact Factor to:",
+        question: "Akcent wyrazowy iloczasowy:",
         options: [
-          "Indeks oceniający wartość czasopisma naukowego biorący pod uwagę indeksy Hirscha publikujących w nim autorów",
-          "Indeks oceniający wartość naukową autora publikacji naukowych",
-          "Indeks oceniający wartość naukowca biorący pod uwagę liczbę cytowań opublikowanych przez niego artykułów",
-          "Indeks oceniający wartość czasopisma naukowego biorący pod uwagę liczbę cytowań opublikowanych w nim artykułów"
-        ],
-        correct: 3
-      },
-      {
-        question: "Zaznacz prawdziwe zdanie dotyczące URN (Uniform Resource Name):",
-        options: [
-          "URN wskazuje adres obiektu w Internecie",
-          "URN jest systemem przekształcającym unikalną nazwę obiektu na jego lokalizację w sieci",
-          "URN wskazuje lokalizację obiektu w bibliotece cyfrowej, pełni tę samą rolę, co URL w Internecie",
-          "URN jest trwałym identyfikatorem na stałe związanym z obiektem, a nie jego lokalizacją"
-        ],
-        correct: 3
-      },
-      {
-        question: "Protokół \"robot exclusion protocol\":",
-        options: [
-          "Jest to protokół pozwalający robotom na śledzenie zawartości stron WWW w celu wyszukiwania niedozwolonych treści lub zasobów chronionych prawem autorskim",
-          "Jest to protokół pozwalający na śledzenie hiperłączy umieszczonych na stronach WWW w celu indeksowania stron i tworzenia rankingów",
-          "Jest to protokół \"honorowy\" informujący automaty (np. indeksujące), czego nie powinny robić na stronie WWW. \"Honorowy\" oznacza, że żaden mechanizm nie wymusza na automatach egzekwowania tego, ale większość się do niego stosuje.",
-          "Jest to protokół stosowany przede wszystkim w bibliotekach cyfrowych do komunikacji między jej rozproszonymi zasobami. Pozwala zidentyfikować i wyeliminować zduplikowane zasoby, nawet jeśli ich opis bibliograficzny jest różny"
-        ],
-        correct: 2
-      },
-      {
-        question: "Zaznacz prawdziwe zdanie dotyczące praw autorskich:",
-        options: [
-          "Właściciel kopii dzieła ma prawo ją odsprzedać, ale nie ma prawa dokonywać redystrybucji",
-          "Prawa autorskie wygasają z chwilą śmierci autora",
-          "Po stworzeniu dzieła należy je zarejestrować w odpowiedniej instytucji, aby zostały przypisane prawa autorskie do danego dzieła",
-          "Pracodawca twórcy nie może być właścicielem praw autorskich"
-        ],
-        correct: 0
-      },
-      {
-        question: "UTF-8 to:",
-        options: [
-          "blok znaków Unicode dla języków europejskich i cyrylicy",
-          "format pozwalający na przekształcenie punktu kodowego Unicode na ciąg bitów (maks 4 bajty)",
-          "inna nazwa punktu kodowego Unicode o długości maks 8 bajtów",
-          "format zapisu punktu kodowego Unicode na 8 bitach, np. dla punktu kodowego U+0015 zapis w UTF-8 wygląda następująco: 0000 1111"
+          "polega na głośniejszym wymawianiu samogłoski",
+          "nie występuje w języku polskim",
+          "występuje w języku polskim",
+          "nazywany jest dynamicznym lub ekspiracyjnym"
         ],
         correct: 1
       },
       {
-        question: "Zaznacz fałszywe zdanie dotyczące DOI (Digital Object Identifier):",
+        question: "W równaniu F^(-1)(log|F(x[n])|) celem logarytmowania jest:",
         options: [
-          "Aby przejść do zasobu identyfikowanego przez DOI, trzeba mieć zainstalowane oprogramowanie do interpretacji DOI",
-          "DOI jest trwałym identyfikatorem na stałe związanym z obiektem, a nie jego lokalizacją",
-          "DOI jest zrealizowane na bazie Handle System i zarejestrowane w Global Handle Registry z numerem początkowym 10",
-          "DOI jest powszechnie wykorzystywane do identyfikowania publikacji naukowych"
-        ],
-        correct: 0
-      },
-      {
-        question: "\"Wydanie\" w kontekście utworu to:",
-        options: [
-          "sposób prezentacji pracy mogący różnić się formatowaniem, ale nie treścią",
-          "każda kopia utworu",
-          "sposób prezentacji pracy, mogący różnić się treścią od poprzedniego wydania",
-          "fizyczny obiekt reprezentujący utwór"
+          "uzyskanie odpowiedniego widma",
+          "wyeliminowanie wyższych harmonicznych",
+          "uniknięcie niedomiaru, przyśpieszenie obliczeń i wyodrębnienie formantów",
+          "rozbicie całki"
         ],
         correct: 2
       },
       {
-        question: "Kody $a i $d w MARC21: 100 1# $a Demichowicz-Pigoniowa, Jadwiga $d #-1978 oznaczają:",
+        question: "Element sub:",
         options: [
-          "$a oznacza, że nazwa autora zaczyna się od nazwiska, zaś $d oznacza, że nie jest znany rok urodzenia autora",
-          "stosuje się je do rozdzielania treści pola i nie mają one żadnej semantyki (znaczenia)",
-          "dodają podkategorie do treści pola",
-          "są numeracją kolejnych linii w treści pola wielolinijkowego"
+          "odwołuje się do zewnętrznego źródła wymowy",
+          "zaznacza wyraźnie podział tekstu na fragmenty",
+          "służy do rozwijania skrótów",
+          "umożliwia zastępowanie np. dat odp. wzorem wymowy"
         ],
         correct: 2
       },
       {
-        question: "W zapisie MARC21: 100 oznacza:",
+        question: "Zmiękczone spółgłoski:",
         options: [
-          "jest to liczba binarna - w tym przypadku oznacza, że jest to czwarte pole w rekordzie",
-          "jest to symbol dla systemu bibliotecznego, nie niesie żadnej informacji dla człowieka",
-          "jest to etykieta pola łącząca je z analogowym egzemplarzem utworu",
-          "jest to etykieta pola, w tym przypadku oznacza hasło główne – nazwa osobowa"
-        ],
-        correct: 3
-      },
-      {
-        question: "Format DjVu służy do:",
-        options: [
-          "Wyświetlania grafiki 3D na stronach bibliotek cyfrowych",
-          "Przechowywania rozpoznanego tekstu z zeskanowanych dokumentów",
-          "Tworzenia metadanych dla zasobów skanowanych",
-          "Kompresji stratnej dokumentów tekstowych i grafiki"
-        ],
-        correct: 3
-      },
-      {
-        question: "Bibliometria to:",
-        options: [
-          "Zbiór ogólnych wytycznych dotyczących opisów bibliograficznych. Na ich podstawie tworzone są różne formaty metadanych",
-          "Zbiór miar oceniających jakość biblioteki cyfrowej",
-          "Zbiór miar związanych z zasobami biblioteki, np.: wielkość woluminu, liczba egzemplarzy, liczba stron itp.",
-          "Zbiór metod matematycznych oraz statystycznych do analizy i oceny książek, artykułów i innych publikacji"
-        ],
-        correct: 3
-      },
-      {
-        question: "\"Praca\" w kontekście utworu to:",
-        options: [
-          "utwór, który ma nadany numer ISBN",
-          "wyodrębniona, bezpostaciowa zawartość utworu",
-          "fizyczny obiekt reprezentujący utwór",
-          "wysiłek włożony w dygitalizację zasobu"
+          "wymawiane są bez udziału języka",
+          "są wymawiane z udziałem języka",
+          "są bezdźwięczne",
+          "są otwarte"
         ],
         correct: 1
       },
       {
-        question: "Zaznacz fałszywe zdanie dotyczące punktu kodowego Unicode:",
+        question: "Odległość Mahalanobis to NIE jest:",
         options: [
-          "Reprezentuje zawsze jeden znak",
-          "Może reprezentować ligatury, np fi",
-          "Jeden znak może być reprezentowany w różny sposób, np jako jeden punkt kodowy albo złożenie dwóch punktów kodowych",
-          "Może reprezentować część znaku, np dwie kropki wstawiane nad literą"
+          "odległość używana w kwantyzacji wektorów częściej niż euklidesowa",
+          "odległość dwóch wektorów uwzględniająca wariancję ich składowych",
+          "największa możliwa odległość przedstawiciela (ang. codeword) klasy (codebook) od innego przedstawiciela dla wektora",
+          "sqrt((x-y)^T E^(-1)(x-y)) (wektorowo)"
         ],
-        correct: 0
+        correct: 2
       },
       {
-        question: "W zapisie MARC21: 1# oznacza:",
+        question: "Filtry szeregowe w syntezie formantów:",
         options: [
-          "jest to numeracja kolejnych pól w rekordzie, to jest akurat drugie pole w rekordzie (bo numerujemy od 0)",
-          "jest to symbol dla systemu bibliotecznego, nie niesie żadnej informacji dla człowieka",
-          "jest to zapis w formie wyrażenia regularnego i reprezentuje wszystkie liczby dwucyfrowe zaczynające się od 1",
-          "jest to wskaźnik pola, w tym przypadku oznacza, że nazwisko autora wystąpi jako pierwsze"
+          "nie sprawiają problemów przy sterowaniu amplitudą",
+          "dobrze modelują głoski nosowe i trące",
+          "nie pozwalają łatwo sterować częstotliwością",
+          "dobrze modelują głoski nienosowe"
         ],
         correct: 3
       },
       {
-        question: "Wskaż strukturę standardowego pola MARC:",
+        question: "NIE jest prawdą, że algorytm wyboru najlepszej ścieżki w niejawnych procesach Markowa:",
         options: [
-          "Etykieta pola + wskaźnik + treść pola",
-          "Etykieta pola + ogranicznik + kod pola",
-          "Etykieta pola + kod pola + wskaźnik + ogranicznik",
-          "Kod kontrolny + ogranicznik + treść pola"
-        ],
-        correct: 0
-      },
-      {
-        question: "Zaznacz prawdziwe zdanie dotyczące algorytmu PageRank:",
-        options: [
-          "Algorytm przestał być wydajny przez ogromny wzrost liczby stron internetowych",
-          "Szczegóły algorytmu można znaleźć w pracy doktorskiej Larry’ego Page’a i Siergieja Brina",
-          "Algorytm jest wciąż w użyciu, ale jego wyniki nie są publikowane",
-          "Algorytm nie jest już używany, gdyż SEO umieli bez problemu tworzyć serwisy podbijające ranking strony oparty na tym algorytmie"
-        ],
-        correct: 2
-      },
-	  {
-        question: "Którego roku miała miejsce globalna premiera platformy Webtoon?",
-        options: [
-          "2014",
-          "2005",
-          "2016",
-          "2008"
-        ],
-        correct: 0
-      },
-      {
-        question: "Jaką nazwą określa się komiksy publikowane na platformie Webtoon przez niezależnych twórców?",
-        options: [
-          "Canvas",
-          "Originals",
-          "Featured",
-          "Rising Star"
-        ],
-        correct: 0
-      },
-      {
-        question: "Z jaką częstotliwością publikowane są nowe rozdziały komiksów z serii Webtoon Originals?",
-        options: [
-          "Tylko raz w tygodniu",
-          "Co najmniej raz w tygodniu",
-          "Codziennie",
-          "Nie jest to z góry ustalone"
+          "to algorytm Viterbiego",
+          "to algorytm Bauma-Welcha",
+          "jest podobny do algorytmu obliczania prawdopodobieństwa obserwacji, ale zamiast sumy występuje maksimum",
+          "zapamiętuje ślad do poprzedniego stanu w ścieżce"
         ],
         correct: 1
       },
       {
-        question: "Jaki procent wartości \"Super Like\" otrzymuje twórca komiksu od czytelnika?",
+        question: "Półsamogłoski to:",
         options: [
-          "50%",
-          "30%",
-          "70%",
-          "100%"
+          "samogłoski wymawiane szeptem",
+          "nieprawidłowa nazwa półspółgłosek",
+          "prawidłowa nazwa półspółgłosek",
+          "coś co umożliwia wymowę wyrazu [vlk]"
+        ],
+        correct: 3
+      },
+      {
+        question: "Normalizacja tekstu obejmuje:",
+        options: [
+          "ustalanie wagi słów",
+          "ustalanie wymowy nazw własnych",
+          "rozwijanie skrótów",
+          "ustalanie intonacji"
         ],
         correct: 2
+      },
+      {
+        question: "Filtry równoległe w syntezie formantów (są lepsze dla?):",
+        options: [
+          "głoski nienosowe",
+          "głoski nosowe i trące",
+          "spółgłoski",
+          "głoski zmiękczone"
+        ],
+        correct: 1
+      },
+      {
+        question: "Jakie zjawisko zachodzi w wyrazie „prawoznawstwo”:",
+        options: [
+          "Ubezdźwięcznienie",
+          "Redukcja postępowa",
+          "Asymilacja martwa",
+          "Redukcja martwa"
+        ],
+        correct: 1
+      },
+      {
+        question: "Czego NIE ma w PLS:",
+        options: [
+          "nagłówka XML",
+          "możliwości użycia formatów ABNF lub XML",
+          "możliwość zapisu kilku różnych sposobów wymowy dla jednego słowa",
+          "stosowania różnych alfabetów fonetycznych"
+        ],
+        correct: 1
+      },
+      {
+        question: "Czego NIE ma przy używaniu wyłącznie sieci neuronowych do rozpoznawania mowy:",
+        options: [
+          "sieci wielowarstwowe",
+          "MEMM",
+          "Sieci dwukierunkowe",
+          "Sieci jakieś tam (pewnie z bramkami lub rekurencyjne)"
+        ],
+        correct: 1
+      },
+      {
+        question: "Głoska \"a\" jest:",
+        options: [
+          "dźwięczna",
+          "bezdźwięczna",
+          "średnia",
+          "wysoka"
+        ],
+        correct: 0
+      },
+      {
+        question: "Pronunciation Lexicon Specification:",
+        options: [
+          "Zawiera definicje fonemów",
+          "może być zapisany w formacie ABNF lub XML",
+          "Zawiera kilka alfabetów",
+          "może zawierać kilka różnych wymów jednego wyrazu"
+        ],
+        correct: 3
+      },
+      {
+        question: "Do rozpoznawania uszu stosuje się:",
+        options: [
+          "trójwymiarowe modele uszu",
+          "skanowanie laserowe",
+          "podczerwień",
+          "termogramy"
+        ],
+        correct: 0
+      },
+      {
+        question: "Akcent iloczasowy (wskaż nieprawdziwe):",
+        options: [
+          "Nie występuje w polskim",
+          "Polega na dłuższym wymawianiu",
+          "Polega na głośniejszym wymawianiu",
+          "Jest rodzajem akcentu wyrazowego"
+        ],
+        correct: 2
+      },
+      {
+        question: "Linie papilarne, czego się NIE stosuje:",
+        options: [
+          "Termiczny",
+          "Pojemnościowy",
+          "Podczerwień",
+          "Ultradźwięki"
+        ],
+        correct: 2
+      },
+      {
+        question: "Linie papilarne (wskaż prawdziwe):",
+        options: [
+          "Zazwyczaj stosuje się 1, 2 lub 10 palców",
+          "Bada się wilgotność palców",
+          "Wyróżnia się jedynie 5 podstawowych typów wzorców",
+          "Kształty składają się tylko z wirów i pętli"
+        ],
+        correct: 0
+      },
+      {
+        question: "Głoska “a” jest:",
+        options: [
+          "Środkowa",
+          "Przednia",
+          "Średnia",
+          "Tylna"
+        ],
+        correct: 0
+      },
+      {
+        question: "Do rozpoznawania mowy służy:",
+        options: [
+          "IVONA",
+          "char2wav",
+          "wav2vec / wav2letter",
+          "text2speech"
+        ],
+        correct: 2
+      },
+      {
+        question: "Do odczytu linii papilarnych używa się:",
+        options: [
+          "Czytnik laserowy (niebieski)",
+          "Odcisków palców",
+          "Wilgoci i natłuszczenia opuszków palców",
+          "Światła podczerwonego"
+        ],
+        correct: 1
+      },
+      {
+        question: "Język SSML służy do:",
+        options: [
+          "rozpoznawania mowy",
+          "rozwinięcia skrótów",
+          "syntezy mowy",
+          "przetwarzania mowy"
+        ],
+        correct: 2
+      },
+      {
+        question: "Wzór W = arg max P(O|W)P(W)/P(O) przedstawia:",
+        options: [
+          "Model akustyczny",
+          "Wzór Bayesa",
+          "Maksymalizację P",
+          "Model językowy"
+        ],
+        correct: 1
+      },
+      {
+        question: "LMSF nie:",
+        options: [
+          "Wynika z niedoszacowania modelu",
+          "Jest wykładnikiem potęgo modelu języka",
+          "Minimalizuje model językowy",
+          "Należy do przedziału otwartego (0,1)"
+        ],
+        correct: 3
+      },
+      {
+        question: "Znanym systemem rozpoznawania mowy są:",
+        options: [
+          "Dragon Dictate firmy Nuance",
+          "Balabolka",
+          "IVONA",
+          "SSML"
+        ],
+        correct: 0
+      },
+      {
+        question: "…FAR (chyba chodziło o to, co z tego jest prawdą dla FAR):",
+        options: [
+          "Jest mniejszy niż FFR",
+          "Jest jedną z osi ROC",
+          "Jest stałe przy zwiększaniu się liczby osób",
+          "FFR…"
+        ],
+        correct: 1
+      },
+      {
+        question: "Linie papilarne można skanować:",
+        options: [
+          "Ultradźwiękami",
+          "Infradźwiękami",
+          "Na podczerwień",
+          "Laserowo"
+        ],
+        correct: 0
+      },
+      {
+        question: "W wyrazie trzask występuje:",
+        options: [
+          "Udźwięcznienie",
+          "Ubezdźwięcznienie",
+          "Redukcja postępowa",
+          "Asymilacja martwa"
+        ],
+        correct: 1
+      },
+      {
+        question: "W gramatyce SRGS dopasowanie do dowolnej wypowiedzi oznaczamy jako:",
+        options: [
+          "puste miejsce za kreską pionową (ABNF) lub pusty element  w elemencie  (XML)",
+          "regułę GARBAGE",
+          "regułę NULL",
+          "regułę VOID"
+        ],
+        correct: 1
+      },
+      {
+        question: "W pomiarze wzoru tęczówki oka trudności NIE sprawia:",
+        options: [
+          "rozmiar tęczówki",
+          "barwa tęczówki",
+          "umiejscowienie tęczówki na obrazie",
+          "rzęsy"
+        ],
+        correct: 1
+      },
+      {
+        question: "Nieprawdą jest, że w rozpoznawaniu mowy wyłącznie za pomocą głębokich sieci neuronowych używane są:",
+        options: [
+          "sieci dwukierunkowe",
+          "niejawne modele Markowa (HMM)",
+          "sieci rekurencyjne (RNN)",
+          "sieci z bramkami (np. LSTM)"
+        ],
+        correct: 1
+      },
+      {
+        question: "W syntezie z wyborem jednostek:",
+        options: [
+          "zmieniając parametry można uzyskać śpiew",
+          "jednostki są modelowane za pomocą sumy rozkładów normalnych",
+          "sterujemy częstotliwością pojedynczych formantów",
+          "wymagana jest szczególnie duża baza nagrań"
+        ],
+        correct: 3
+      },
+      {
+        question: "Współczynnik FAR jest:",
+        options: [
+          "jest odwrotnością FRR",
+          "jest wynikiem podzielenia wartości ROC przez FRR",
+          "pozostaje stały przy zwiększaniu liczby osób w bazie danych",
+          "jest ważniejszy niż FRR gdy szczególnie ważne jest bezpieczeństwo"
+        ],
+        correct: 3
+      },
+      {
+        question: "W równaniu celem logarytmowania NIE jest:",
+        options: [
+          "rozplecenie splotu",
+          "oddzielenie częstotliwości podstawowej od częstotliwości rezonansowych",
+          "uniknięcie niedomiaru i przyspieszenie obliczeń",
+          "rozbicie całki na sumę dwóch funkcji w dziedzinie czasu"
+        ],
+        correct: 3
+      },
+      {
+        question: "Zmiękczone spółgłoski:",
+        options: [
+          "są wymawiane tak, że środek języka tworzy jedną zaporę",
+          "zapisujemy jako spółgłoskę twardą z kreseczką u góry",
+          "są wymawiane z udziałem języka, ale język nie tworzy jednej zapory",
+          "są bezdźwięczne"
+        ],
+        correct: 2
+      },
+      {
+        question: "Nieprawdą jest, że zespół filtrów mel:",
+        options: [
+          "jest zespołem filtrów rozmieszczonych liniowo do częstotliwości 1 kHz, a logarytmicznie powyżej tej częstotliwości",
+          "stosuje się po przekształceniu Fouriera, a przed logarytmowaniem",
+          "jest zespołem filtrów modelujących logarytmiczne słyszenie dźwięków przez ludzi",
+          "jest zespołem filtrów trójkątnych równomiernie rozmieszczonych w skali mel"
+        ],
+        correct: 3
+      },
+      {
+        question: "NIE jest prawdą, że algorytm wyboru najlepszej ścieżki w niejawnych procesach Markowa:",
+        options: [
+          "zapamiętuje ślad do poprzedniego stanu w ścieżce",
+          "jest podobny do algorytmu obliczania prawdopodobieństwa obserwacji, ale zamiast sumy występuje maksimum",
+          "to algorytm Viterbiego",
+          "umożliwia kolejne przybliżenia parametrów i uczenie modelu"
+        ],
+        correct: 3
+      },
+      {
+        question: "W wymowie wyrazu przesmyk występuje zjawisko zwane:",
+        options: [
+          "ubezdźwięcznieniem",
+          "asymilacją żywą",
+          "koartykulacją żywą postępową",
+          "koartykulacją wsteczną"
+        ],
+        correct: 0
+      },
+      {
+        question: "LMSF:",
+        options: [
+          "przyjmuje wartości z przedziału otwartego (0,1)",
+          "obliczany jest za pomocą algorytmu Viterbiego",
+          "zmniejsza rolę modelu języka",
+          "obliczany jest za pomocą algorytmu Baum-Welch"
+        ],
+        correct: 2
+      },
+      {
+        question: "Filtry szeregowe w syntezie formantów:",
+        options: [
+          "dadzą się opisać pojedynczą funkcją przenoszenia",
+          "nie sprawiają problemów przy sterowaniu amplitudą",
+          "dobrze modelują głoski nosowe i trące",
+          "sprawiają problemy z amplitudą"
+        ],
+        correct: 3
+      },
+      {
+        question: "NIE jest prawdą, że normalizacja tekstu obejmuje:",
+        options: [
+          "rozwijanie skrótów",
+          "zapisywanie liczb słownie",
+          "ustalanie wymowy homografów",
+          "ustalanie intonacji"
+        ],
+        correct: 3
+      },
+      {
+        question: "Do rozpoznawania linii papilarnych NIE znajdują zastosowania:",
+        options: [
+          "minucje",
+          "detale Galtona (drugiego poziomu)",
+          "wzorce (szablony) linii papilarnych",
+          "linie papilarne najczęściej jednego, dwóch lub 10 palców"
+        ],
+        correct: 3
+      },
+      {
+        question: "We wzorze W = arg max (P(O|W)P(W) )/P(O) model akustyczny to:",
+        options: [
+          "pierwszy człon licznika",
+          "drugi człon licznika",
+          "mianownik",
+          "wyrażenie po arg max"
+        ],
+        correct: 0
       }
     ];
 
@@ -407,7 +536,6 @@
       form.appendChild(qDiv);
     });
 
-    // Obsługa odpowiedzi i feedbacku
     document.querySelectorAll('.question').forEach((question, qIdx) => {
       const name = `q${qIdx}`;
       const correct = shuffledQuiz[qIdx].correct;

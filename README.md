@@ -1,8 +1,8 @@
-# Digital Libraries Quiz 🧠📚
+# Biometrics and Speech Processing Quiz 🧠📚
 
-An interactive quiz about digital libraries, built with HTML, CSS, and JavaScript. Questions and answers are randomized each time you load the page.
+An interactive quiz about biometrics and speech processing, built with HTML, CSS, and JavaScript. Questions and answers are randomized each time you load the page.
 
-🔗 [digital-libraries-quiz – GitHub Pages](https://luluu9.github.io/digital-libraries-quiz/)
+🔗 [bipm-quiz – GitHub Pages](https://luluu9.github.io/bipm-quiz/)
 
 ## Features
 - Random order of questions and answers on every refresh
@@ -12,6 +12,6 @@ An interactive quiz about digital libraries, built with HTML, CSS, and JavaScrip
 ## How to Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/luluu9/digital-libraries-quiz.git
+   git clone https://github.com/luluu9/bipm-quiz.git
    ```
 2. Open the index.html file in your browser.
