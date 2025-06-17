@@ -5,7 +5,7 @@
   <title>Quiz – Biometria i przetwarzanie mowy</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-    h1 { color: #333; }
+    h1, h2 { color: #333; }
     .question { margin-bottom: 20px; padding: 10px; background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .correct { color: green; font-weight: bold; }
     .incorrect { color: red; font-weight: bold; }
@@ -15,10 +15,15 @@
 </head>
 <body>
   <h1>Quiz – Biometria i przetwarzanie mowy</h1>
-  <form id="quizForm"></form>
+
+  <h2>Zestaw 1 – Pytania z bazy</h2>
+  <form id="quizForm1"></form>
+
+  <h2>Zestaw 2 – Pytania dodatkowe</h2>
+  <form id="quizForm2"></form>
 
   <script>
-    const quizData = [
+  const quizData1 = [
       {
         question: "Diphones to jednostki:",
         options: [
@@ -501,6 +506,424 @@
       }
     ];
 
+    const quizData2 = [
+      {
+        question: "Który algorytm jest najczęściej stosowany w rozpoznawaniu mowy?",
+        options: ["K-means", "HMM", "PCA", "SVM"],
+        correct: 1,
+        explanation: "HMM (ukryte modele Markowa) są powszechnie używane w rozpoznawaniu mowy ze względu na zdolność modelowania sekwencji czasowych."
+      },
+      {
+        question: "Czym jest MFCC?",
+        options: ["Rodzaj kodowania tekstu", "Metoda ekstrakcji cech z sygnału mowy", "Typ filtru dolnoprzepustowego", "Algorytm rozpoznawania mowy"],
+        correct: 1,
+        explanation: "MFCC (Mel-Frequency Cepstral Coefficients) to współczynniki opisujące widmo częstotliwości mowy w skali Mel – używane do ekstrakcji cech w przetwarzaniu mowy."
+      },
+      {
+        question: "Która z poniższych właściwości cech biometrycznych jest prawdziwa dla 'Niezmienności'?",
+        options: ["Cecha musi występować u wszystkich ludzi.", "Cecha musi odróżniać różne osoby.", "Cecha musi być stała w czasie i niezależna od okoliczności pomiaru.", "Pomiar cechy nie może prowokować sprzeciwu"],
+        correct: 2,
+        explanation: "Niezmienność jako pożądana właściwość cech biometrycznych oznacza, że dana cecha powinna być stabilna w czasie i nie ulegać zmianom pod wpływem różnych okoliczności pomiaru."
+      },
+      {
+        question: "Jaki jest główny cel dzielenia sygnału mowy na zachodzące na siebie 'ramki' i stosowania funkcji okna (np. okna Hamminga) w przetwarzaniu mowy?",
+        options: ["Usunięcie przekrzywienia widma za pomocą filtra górnoprzepustowego", "Przeniesienie sygnału z dziedziny czasu do dziedziny częstotliwości dla krótkoczasowej analizy.", "Skompresowanie zakresu dynamiki amplitud sygnału dla łatwiejszej analizy.", "Modelowanie logarytmicznego odczuwania natężenia dźwięku przez ludzi"],
+        correct: 1,
+        explanation: "Okna (podział na ramki) są niezbędne do krótkoczasowej analizy czasowo-częstotliwościowej sygnału mowy, wykorzystującej przekształcenie Fouriera."
+      },
+      {
+        question: "Który algorytm jest stosowany w Ukrytych Modelach Markowa (HMM) do iteracyjnego szacowania i uczenia parametrów modelu (prawdopodobieństw początkowych π, prawdopodobieństw przejść A i prawdopodobieństw obserwacji B) na podstawie danego ciągu obserwacji?",
+        options: ["Algorytm Viterbiego", "Algorytm Do Przodu-Do Tyłu (Forward-Backward).", "Algorytm Bauma-Welcha.", "Algorytm A*"],
+        correct: 2,
+        explanation: "Algorytm Bauma-Welcha jest używany do iteracyjnego szacowania parametrów Ukrytych Modeli Markowa (HMM) w kolejnych przybliżeniach, dążąc do znalezienia modelu, który najlepiej objaśnia zaobserwowane dane."
+      },
+      {
+        question: "Która z metod wygładzania N-gramów polega na dodawaniu małego ułamka 'k' (obliczanego na osobnym zbiorze tekstów) do wszystkich zliczeń N-gramów i jest zaliczana do metod addytywnych?",
+        options: ["Wygładzanie Laplace'a (add-1 smoothing)", "Metoda Knesera-Neya.", "Bezwzględne odliczanie (absolute discounting).", "Wygładzanie 'dodaj k' (add-k smoothing)"],
+        correct: 3,
+        explanation: "Metoda 'dodaj k' polega na dodawaniu małego ułamka 'k' (obliczanego na osobnym zbiorze tekstów) do wszystkich zliczeń N-gramów i jest zaliczana do metod addytywnych."
+      },
+      {
+        question: "Które stwierdzenie jest prawdziwe w odniesieniu do filtrów równoległych w syntezie formantów?",
+        options: ["Nie dadzą się opisać pojedynczą funkcją przenoszenia", "Są zazwyczaj używane do modelowania głosek nienosowych.", "Pozwalają na łatwiejsze sterowanie częstotliwością pojedynczych formantów w porównaniu do filtrów szeregowych.", "Nie sprawiają problemów przy sterowaniu amplitudą w porównaniu do filtrów szeregowych"],
+        correct: 2,
+        explanation: "W syntezatorze równoległym sterowanie częstotliwością formantów jest łatwiejsze niż w syntezatorze szeregowym."
+      },
+      {
+        question: "System Deep Speech, znany ze swojej wydajności w rozpoznawaniu mowy zaszumionej, wykorzystuje przede wszystkim którą warstwę sieci neuronowej dla swojej czwartej warstwy?",
+        options: ["Standardową warstwę softmax", "Warstwę splotową 2D.", "Dwukierunkową sieć rekurencyjną (RNN).", "Głębokie maszyny Boltzmanna (DBN)"],
+        correct: 2,
+        explanation: "System Deep Speech wykorzystuje 5-warstwową sieć neuronową, gdzie czwarta warstwa to dwukierunkowa sieć rekurencyjna."
+      },
+      {
+        question: "Który element i atrybut SSML służą do kontrolowania szybkości mówienia, wyrażonej w dodatnich procentach (100% oznacza brak zmiany) lub symbolicznie (np. x-slow do x-fast)?",
+        options: ["<emphasis> z atrybutem level", "<break> z atrybutem time.", "<prosody> z atrybutem rate.", "<voice> z atrybutem gender"],
+        correct: 2,
+        explanation: "Element <prosody> z atrybutem rate w SSML służy do kontrolowania szybkości mówienia, którą można wyrazić w procentach lub symbolicznie."
+      },
+      {
+        question: "Zgodnie z artykulacyjną klasyfikacją spółgłosek, który typ spółgłosek jest tworzony, gdy środek języka tworzy jedną zaporę?",
+        options: ["Spółgłoski twarde", "Spółgłoski zmiękczone.", "Spółgłoski miękkie.", "Spółgłoski szczelinowe"],
+        correct: 2,
+        explanation: "Spółgłoski miękkie są artykułowane w taki sposób, że środek języka stanowi główne miejsce artykulacji i tworzy jedną zaporę."
+      },
+      {
+        question: "Która z poniższych pozycji nie jest wymieniona jako podstawowa trudność techniczna w pomiarze wzoru tęczówki oka?",
+        options: ["Uzyskanie obrazu", "Umiejscowienie tęczówki na obrazie.", "Dopasowanie wzorca tęczówki.", "Zmieniająca się barwa tęczówki z wiekiem"],
+        correct: 3,
+        explanation: "Podstawowe problemy techniczne w pomiarze wzoru tęczówki oka to uzyskanie obrazu, umiejscowienie tęczówki i dopasowanie wzorca. Choć barwa tęczówki może się zmieniać z wiekiem, nie jest to wymieniane jako techniczna trudność w pomiarze wzoru."
+      },
+      {
+        question: "W zadaniach rozpoznawania mowy, zwłaszcza w scenariuszach z otwartym słownictwem, jak nazywane są słowa, których brakuje w słowniku systemu?",
+        options: ["Hapax legomena", "Słowa kodowe (codewords).", "Słowa spoza słownika (OOV - out-of-vocabulary).", "Fonemy."],
+        correct: 2,
+        explanation: "W zadaniach z otwartym słownictwem słowa, których brak w słowniku systemu, określa się jako słowa spoza słownika (OOV - out-of-vocabulary)."
+      },
+      {
+        question: "Która z poniższych właściwości cech biometrycznych oznacza, że systemu identyfikacji nie można oszukać?",
+        options: ["Akceptowalność", "Indywidualność", "Brak możliwości fałszowania", "Mierzalność"],
+        correct: 2,
+        explanation: "Właściwość 'Brak możliwości fałszowania' odnosi się do odporności systemu biometrycznego na oszustwa."
+      },
+      {
+        question: "Które stwierdzenie najlepiej opisuje spółgłoski miękkie w klasyfikacji spółgłosek ze względu na udział języka w artykulacji?",
+        options: ["Wymawiane są bez udziału środka języka, który zalega dno jamy ustnej", "Środek języka jest głównym miejscem artykulacji i tworzy jedną zaporę.", "Środek języka nie tworzy jednej zapory.", "Są to spółgłoski bezdźwięczne"],
+        correct: 1,
+        explanation: "Spółgłoski miękkie charakteryzują się tym, że środek języka stanowi główne miejsce artykulacji i tworzy jedną zaporę."
+      },
+      {
+        question: "W którym z podanych wyrazów występuje zjawisko udźwięcznienia (asymilacji żywej)?",
+        options: ["przesmyk", "babka", "prośba", "krzak"],
+        correct: 2,
+        explanation: "Zjawisko udźwięcznienia (asymilacji żywej) występuje m.in. w wyrazie 'prośba'."
+      },
+      {
+        question: "Które stwierdzenie jest prawdziwe w odniesieniu do akcentu wyrazowego w języku polskim?",
+        options: ["Jest akcentem iloczasowym, który pada na dowolną sylabę", "Jest akcentem tonicznym i ruchomym.", "Jest akcentem przyciskowym, stałym i paroksytonicznym.", "Charakteryzuje się akcentem inicjalnym"],
+        correct: 2,
+        explanation: "Polski akcent wyrazowy jest przyciskowy (dynamiczny), stały (pada w tym samym miejscu, zazwyczaj na przedostatnią sylabę) i paroksytoniczny."
+      },
+      {
+        question: "Jakie jest główne zadanie wzmocnienia wstępnego (preemphasis) w przetwarzaniu sygnału mowy?",
+        options: ["Zmniejszenie szumu otoczenia", "Usunięcie przekrzywienia widma (spectral tilt) za pomocą filtra górnoprzepustowego.", "Wygładzenie sygnału za pomocą filtra dolnoprzepustowego.", "Kompresja dynamiczna sygnału"],
+        correct: 1,
+        explanation: "Wzmocnienie wstępne (preemphasis) ma za zadanie usunąć przekrzywienie widma (spectral tilt) za pomocą filtra górnoprzepustowego."
+      },
+      {
+        question: "Co oblicza algorytm 'Do Przodu' (Forward algorithm) w kontekście Ukrytych Modeli Markowa (HMM)?",
+        options: ["Najbardziej prawdopodobny ciąg stanów", "Prawdopodobieństwo, że zaobserwowano dany ciąg symboli (o1o2...ot) i w chwili t bieżącym stanem był stan i (αi(t)).", "Prawdopodobieństwo pozostawania w danym stanie przez określony czas.", "Oczekiwana liczba przejść ze stanu i do stanu j"],
+        correct: 1,
+        explanation: "Algorytm 'Do Przodu' (Forward algorithm) oblicza wartość αi(t), która reprezentuje prawdopodobieństwo zaobserwowania sekwencji o1o2...ot i bycia w stanie i w chwili t."
+      },
+      {
+        question: "Jaki jest cel wprowadzenia kary za wstawianie słów (WIP - Word Insertion Penalty) w równaniu dekodowania mowy, uwzględniającym model akustyczny i model języka?",
+        options: ["Zwiększenie roli modelu akustycznego", "Zmniejszenie liczby błędów podstawień (substitution errors).", "Zrównoważenie faworyzowania przez model języka mniejszej liczby dłuższych słów.", "Przyspieszenie procesu dekodowania"],
+        correct: 2,
+        explanation: "Kara za wstawianie słów (WIP) jest wprowadzana, ponieważ model języka ma tendencję do faworyzowania krótszych wypowiedzi lub mniejszej liczby dłuższych słów."
+      },
+      {
+        question: "Które z wymienionych elementów są podstawowymi częściami systemu syntezy kanału głosowego (articulatory synthesis)?",
+        options: ["Model sterowania, model kanału głosowego i model akustyczny", "Moduł normalizacji tekstu, moduł analizy fonetycznej i moduł analizy prozodycznej.", "Generator formantów, filtry szeregowe i filtry równoległe.", "Baza danych nagrań, algorytm TD-PSOLA i funkcja kosztu łączenia"],
+        correct: 0,
+        explanation: "System syntezy kanału głosowego składa się z trzech głównych części: modelu sterowania, modelu kanału głosowego i modelu akustycznego."
+      },
+      {
+        question: "W języku SSML, jak można kontrolować atrybut pitch (wysokość głosu) w elemencie <prosody>?",
+        options: ["Wyłącznie za pomocą symbolicznych wartości, takich jak 'x-low' lub 'x-high'", "Za pomocą procentowej zmiany szybkości mówienia.", "Wyrażając go jako częstotliwość w Hz, względną zmianę (procenty, Hz, półtony) lub symbolicznie.", "Poprzez określenie czasu trwania w sekundach"],
+        correct: 2,
+        explanation: "Atrybut pitch w elemencie <prosody> w SSML może być kontrolowany poprzez podanie częstotliwości w Hz, względnej zmiany (w procentach, Hz, półtonach) lub wartości symbolicznej."
+      },
+      {
+        question: "Jaki jest główny cel języka VoiceXML?",
+        options: ["Służy do zapisu słownika wymowy dla syntezy i rozpoznawania mowy", "Umożliwia określenie gramatyki do rozpoznawania mowy.", "Jest językiem do opisu składni rozmowy z wykorzystaniem syntezy mowy i rozpoznawania mowy/DTMF.", "Definiuje style audialne dla dokumentów XML."],
+        correct: 2,
+        explanation: "VoiceXML (Voice Extensible Markup Language) to język do opisu składni rozmowy, wykorzystujący syntezę mowy jako wyjście oraz rozpoznawanie mowy i/lub DTMF jako wejście."
+      },
+      {
+        question: "W gramatyce SRGS, pusta wypowiedź oznaczająca, że oczekuje się, iż nic nie będzie mówione (jak 'nic' po kropce), jest oznaczana jako:",
+        options: ["reguła VOID", "puste miejsce za kreską pionową (ABNF) lub pusty element w elemencie (XML)", "reguła NULL", "reguła GARBAGE"],
+        correct: 2,
+        explanation: "Reguła NULL w gramatyce SRGS oznacza, że oczekuje się, iż nic nie będzie mówione. To tak jakby po kropce powinno być 'nic'."
+      },
+      {
+        question: "Która z poniższych właściwości cech biometrycznych oznacza, że dana cecha musi odróżniać różne osoby?",
+        options: ["Powszechność", "Mierzalność", "Indywidualność", "Akceptowalność"],
+        correct: 2,
+        explanation: "Indywidualność jako pożądana właściwość cech biometrycznych oznacza, że cecha musi odróżniać różne osoby."
+      },
+      {
+        question: "Zgodnie z artykulacyjną klasyfikacją spółgłosek, który typ spółgłosek jest tworzony, gdy tylko wargi tworzą zaporę?",
+        options: ["Spółgłoski wargowo-zębowe", "Spółgłoski tylnojęzykowe", "Spółgłoski dwuwargowe", "Spółgłoski przedniojęzykowo-zębowe"],
+        correct: 2,
+        explanation: "Spółgłoski dwuwargowe (ang. bilabials) to spółgłoski, w których tylko wargi tworzą zaporę."
+      },
+      {
+        question: "W procesie normalizacji tekstu, wyrażenie '1 1/2 l' powinno zostać rozwinięte słownie jako:",
+        options: ["jeden i pół litra", "jeden łamany na dwa litra", "półtora litra", "jeden i pół eL"],
+        correct: 2,
+        explanation: "W przykładach rozwijania słów niestandardowych, '1 1/2 l' rozwija się do 'półtora litra'."
+      },
+      {
+        question: "Algorytm Viterbiego w kontekście Niejawnych Modeli Markowa (HMM) jest używany do:",
+        options: ["iteracyjnego szacowania i uczenia parametrów modelu", "obliczania prawdopodobieństwa, że zaobserwowano dany ciąg symboli", "znajdowania najbardziej prawdopodobnego ciągu stanów ukrytych, który najlepiej wyjaśnia obserwacje", "wygładzania N-gramów poprzez dodawanie małego ułamka 'k'"],
+        correct: 2,
+        explanation: "Algorytm Viterbiego służy do wybrania ciągu stanów (X1, ..., XT), który najlepiej wyjaśnia obserwowane dane. Iteracyjne szacowanie parametrów modelu (prawdopodobieństw początkowych, przejść i obserwacji) to zadanie algorytmu Bauma-Welcha. Obliczanie prawdopodobieństwa ciągu symboli to zadanie algorytmu Do Przodu (Forward Algorithm)."
+      },
+      {
+        question: "Jaki jest główny cel wprowadzenia kary za wstawianie słów (WIP – Word Insertion Penalty) w równaniu dekodowania mowy, uwzględniającym model akustyczny i model języka?",
+        options: ["Zwiększenie roli modelu akustycznego.", "Zrównoważenie faworyzowania przez model języka mniejszej liczby dłuższych słów.", "Przyspieszenie procesu dekodowania.", "Zmniejszenie liczby błędów podstawień."],
+        correct: 1,
+        explanation: "Kara za wstawianie słów (WIP) jest wprowadzana, ponieważ model języka ma tendencję do faworyzowania krótszych wypowiedzi lub mniejszej liczby dłuższych słów."
+      },
+      {
+        question: "Dwa podstawowe kryteria oceny syntezatorów mowy to:",
+        options: ["szybkość i koszt", "zrozumiałość i naturalność", "możliwość generowania śpiewu i płynnych przejść między głosami", "rozmiar bazy nagrań i łatwość sterowania parametrami"],
+        correct: 1,
+        explanation: "Dwa podstawowe kryteria oceny syntezatorów mowy to zrozumiałość i naturalność."
+      },
+      {
+        question: "System Deep Speech firmy Baidu w swojej 5-warstwowej architekturze wykorzystuje:",
+        options: ["wyłącznie sieci rekurencyjne (RNN) w każdej warstwie", "pierwsze trzy warstwy to sieć propagacji prostej z funkcją aktywacji ReLU, a czwarta to dwukierunkowa sieć rekurencyjna", "sieci LSTM w celu modelowania zależności długoterminowych", "Niejawne Modele Markowa (HMM) jako model akustyczny"],
+        correct: 1,
+        explanation: "System Deep Speech wykorzystuje 5-warstwową sieć neuronową, gdzie 3 pierwsze warstwy to sieć propagacji prostej z przycinaną funkcją aktywacji ReLU, a czwarta warstwa to dwukierunkowa sieć rekurencyjna. W tym systemie nie są używane sieci LSTM."
+      },
+      {
+        question: "Które stwierdzenie najlepiej opisuje fonem?",
+        options: ["Najprostszy element dźwiękowy mowy ludzkiej, niepodzielny artykulacyjnie i słuchowo.", "Funkcjonalne jądro głoski, składające się ze zbioru cech rozróżniających.", "Odcinek wypowiedzi stanowiący jedność wydechową, ruchową i akustyczną.", "Dźwięk o nieregularnej częstotliwości drgań."],
+        correct: 1,
+        explanation: "Fonem to funkcjonalne jądro głoski, na które składa się zbiór cech rozróżniających (dysktynktywnych). Opcja a) opisuje głoskę. Opcja c) opisuje sylabę. Opcja d) opisuje szum (charakterystyczny dla spółgłosek) w kryterium akustycznym."
+      },
+      {
+        question: "W równaniu 𝐹 −1 (log|𝐹(𝑥[𝑛])|) celem logarytmowania jest:",
+        options: ["rozbicie całki na sumę dwóch funkcji w dziedzinie czasu", "stworzenie splotu dwóch sygnałów w dziedzinie częstotliwości", "skalowanie harmonicznych w sposób uwypuklający ich 'okresowość' w widmie oraz oddzielenie źródła od filtrów", "modelowanie logarytmicznego odczuwania natężenia dźwięku przez ludzi"],
+        correct: 2,
+        explanation: "Operacja logarytmowania skaluje harmoniczne w sposób uwypuklający ich 'okresowość' w widmie, a także umożliwia oddzielenie źródła (drgań wiązadeł głosowych lub szumu) od filtrów modelujących trakt artykulacyjny. Jest to możliwe, ponieważ splot sygnałów w dziedzinie czasu staje się mnożeniem w dziedzinie częstotliwości, a logarytm iloczynu jest sumą logarytmów, co 'rozplątuje' splot."
+      },
+      {
+        question: "Które zadanie biometryczne polega na sprawdzaniu, czy dana osoba jest tą, za którą się podaje (potwierdzenie tożsamości)?",
+        options: ["Wyszukiwanie danej osoby w bazie danych (1:N)", "Sprawdzanie z listą osób (1:N)", "Potwierdzanie tożsamości (1:1)", "Ustalanie cech fizycznych"],
+        correct: 2,
+        explanation: "Potwierdzanie tożsamości to sprawdzenie, czy osoba jest tą, za którą się podaje, co jest zadaniem typu 1:1. Zadania typu 1:N to ustalanie tożsamości lub sprawdzanie z listą."
+      },
+      {
+        question: "Najprostszy element dźwiękowy mowy ludzkiej, niepodzielny artykulacyjnie i słuchowo, to:",
+        options: ["Fonem", "Sylaba", "Głoska", "Morfem"],
+        correct: 2,
+        explanation: "Głoska (ang. phone) to najprostszy element dźwiękowy mowy ludzkiej, niepodzielny artykulacyjnie i słuchowo. Fonem jest natomiast funkcjonalnym jądrem głoski, składającym się ze zbioru cech rozróżniających."
+      },
+      {
+        question: "Która metoda wygładzania N-gramów polega na dodawaniu jedności do wszystkich zliczeń N-gramów i jest zaliczana do metod addytywnych?",
+        options: ["Metoda Knesera-Neya", "Wygładzanie Laplace'a (add-1 smoothing)", "Bezwzględne odliczanie (absolute discounting)", "Wygładzanie 'dodaj k' (add-k smoothing)"],
+        correct: 1,
+        explanation: "Metoda wygładzania Laplace'a (ang. Laplace smoothing lub add-1 smoothing) polega na dodawaniu jedności do wszystkich liczb n-gramów. Jest to metoda addytywna, choć daje kiepskie wyniki dla modeli języka."
+      },
+      {
+        question: "W syntezatorze formantów, które filtry dobrze modelują głoski nienosowe, a które nosowe i trące?",
+        options: ["Filtry szeregowe modelują nienosowe, a równoległe nosowe i trące.", "Filtry równoległe modelują nienosowe, a szeregowe nosowe i trące.", "Oba typy filtrów modelują nienosowe.", "Oba typy filtrów modelują nosowe i trące."],
+        correct: 0,
+        explanation: "W syntezie formantów, filtry szeregowe dobrze modelują głoski nienosowe, natomiast filtry równoległe są stosowane do modelowania głosek nosowych i trących."
+      },
+      {
+        question: "Który atrybut elementu <prosody> w SSML pozwala na kontrolę głośności, wyrażonej w decybelach (np. +0dB) lub symbolicznie (np. x-soft, loud)?",
+        options: ["rate", "pitch", "duration", "volume"],
+        correct: 3,
+        explanation: "Element <prosody> w SSML posiada atrybut volume, który służy do kontrolowania głośności. Może ona być wyrażona w decybelach ze znakiem lub symbolicznie (np. silent, x-soft, soft, medium, loud, x-loud lub default)."
+      },
+      {
+        question: "Głos jest przykładem cechy biometrycznej, która:",
+        options: ["Jest wyłącznie cechą fizyczną.", "Jest wyłącznie cechą wyuczoną.", "Zawiera składniki zarówno fizyczne, jak i wyuczone.", "Nie jest wykorzystywana do ustalania tożsamości."],
+        correct: 2,
+        explanation: "Cechy fizyczne wynikają z genów, a cechy wyuczone są nabywane w trakcie rozwoju. Głos, w odróżnieniu od np. linii papilarnych (fizyczne) czy podpisu (wyuczone), zawiera składniki obu tych typów."
+      },
+      {
+        question: "Współczynnik WER (Word Error Rate) w ocenie systemów rozpoznawania mowy obliczany jest jako:",
+        options: ["Procent błędnie rozpoznanych słów w stosunku do całkowitej liczby słów.", "Liczba podstawowych operacji edycyjnych (usunięcie, zastąpienie, wstawienie) dzielona przez liczbę słów w tekście oryginalnym.", "Odwrotność współczynnika Perplexity.", "Średnia odległość Levenshteina między tekstem oryginalnym a wyjściem systemu."],
+        correct: 1,
+        explanation: "WER (Word Error Rate) określa liczbę podstawowych operacji edycyjnych (usunięcie D, zastąpienie S i wstawienie I), zamieniających tekst oryginalny o N słowach w wyjście systemu, a wzór to (I + D + S) / N."
+      },
+      {
+        question: "Głównym celem syntezy mowy jest:",
+        options: ["Kompresja sygnału mowy dla efektywniejszego przechowywania.", "Automatyczne generowanie mowy z tekstu.", "Przekształcanie głosu jednej osoby w głos innej.", "Rozpoznawanie mowy zaszumionej."],
+        correct: 1,
+        explanation: "Synteza mowy ma na celu automatyczne generowanie ludzkiej mowy na podstawie tekstu. Inne opcje to zastosowania przetwarzania mowy lub przekształcania głosu, ale nie jej główny cel."
+      },
+      {
+        question: "Rozszerzenie Niejawnych Modeli Markowa (HMM), w którym modeluje się bezpośrednio czas pozostawania w określonym stanie, to:",
+        options: ["Model Markowa z maksymalizacją entropii (MEMM)", "Ukryty Model Semi-Markowa (HSMM)", "Algorytm Viterbiego", "Model sumy rozkładów normalnych (GMM)"],
+        correct: 1,
+        explanation: "Hidden Semi-Markov Model (HSMM) to rozszerzenie HMM, w którym modeluje się bezpośrednio czas (dyskretny, czyli liczbę razy) pozostawania w określonym stanie."
+      },
+      {
+        question: "Która reguła w gramatyce SRGS oznacza, że dana fraza nie ma wartości semantycznej i ma być całkowicie ignorowana przez system?",
+        options: ["GARBAGE", "NULL", "VOID", "Item"],
+        correct: 2,
+        explanation: "Reguła VOID oznacza, że dana fraza nie ma wartości semantycznej i ma być całkowicie ignorowana przez system."
+      },
+      {
+        question: "Jaka jest charakterystyczna cecha zespołu filtrów mel dotycząca ich rozmieszczenia w skali częstotliwości?",
+        options: ["Są rozmieszczone równomiernie w skali mel.", "Są rozmieszczone liniowo do około 1 kHz, a logarytmicznie powyżej tej wartości.", "Są rozmieszczone logarytmicznie do około 1 kHz, a liniowo powyżej tej wartości.", "Rozmieszczenie jest wyłącznie liniowe w całym zakresie częstotliwości."],
+        correct: 1,
+        explanation: "Zespół filtrów mel jest rozmieszczony liniowo do częstotliwości około 1 kHz, a logarytmicznie powyżej tej wartości."
+      },
+      {
+        question: "Dlaczego w algorytmie Viterbiego słowa z różnymi wariantami wymowy mogą być traktowane jako mniej prawdopodobne?",
+        options: ["Ponieważ algorytm nie może stosować modeli języka wyższych rzędów.", "Ponieważ suma wszystkich prawdopodobieństw przejść wychodzących ze stanu musi być równa jeden, co obniża prawdopodobieństwa ścieżek z różnymi wariantami wymowy.", "Ze względu na zbyt duże wymagania obliczeniowe.", "Jest to problem, który został już całkowicie wyeliminowany."],
+        correct: 1,
+        explanation: "Ponieważ suma wszystkich prawdopodobieństw przejść wychodzących ze stanu musi być równa jeden, co obniża prawdopodobieństwa ścieżek zawierających różne warianty wymowy tego samego słowa."
+      },
+      {
+        question: "Która właściwość cech biometrycznych oznacza, że cecha musi występować u wszystkich ludzi?",
+        options: ["Niezmienność", "Akceptowalność", "Indywidualność", "Powszechność"],
+        correct: 3,
+        explanation: "Powszechność jest jedną z pożądanych właściwości cech biometrycznych i oznacza, że cecha musi występować u wszystkich ludzi."
+      },
+      {
+        question: "Oprócz współczynników cepstralnych (MFCC) i energii, jakie inne cechy oblicza się do wektorów cech w przetwarzaniu sygnału mowy, aby pokazać zmienność w czasie?",
+        options: ["Tylko energię sygnału.", "Tylko częstotliwość podstawową (F0).", "Różnice i różnice różnic.", "Wyłącznie fazę sygnału."],
+        correct: 2,
+        explanation: "Do wektorów cech oblicza się także różnice oraz różnice różnic, które pokazują, o ile współczynniki MFCC i energia zmieniają się w czasie oraz tempo tych zmian."
+      },
+      {
+        question: "Czy akcent wyrazowy w języku polskim zawsze pada na przedostatnią sylabę?",
+        options: ["Tak, jest zawsze stały i paroksytoniczny.", "Nie, istnieją wyjątki w wymowie wyrazów pochodzenia obcego.", "Tak, ale tylko w słowach rodzimych.", "Nie, ponieważ jest akcentem swobodnym."],
+        correct: 1,
+        explanation: "Polski akcent wyrazowy jest przyciskowy, jednostajny i stały, padający na przedostatnią sylabę (paroksytoniczny), jednak istnieją wyjątki w wymowie wyrazów pochodzenia obcego."
+      },
+      {
+        question: "Który typ syntezy mowy modeluje fizyczne właściwości poszczególnych narządów uczestniczących w wymowie?",
+        options: ["Synteza formantów", "Synteza z wyborem jednostek", "Synteza modelująca kanał głosowy (articulatory synthesis)", "Synteza oparta na niejawnych modelach Markowa"],
+        correct: 2,
+        explanation: "Synteza kanału głosowego modeluje fizyczne właściwości poszczególnych narządów uczestniczących w wymowie, w odróżnieniu od syntezy formantów."
+      },
+      {
+        question: "Który atrybut elementu <prosody> w SSML pozwala na kontrolę czasu trwania wypowiedzi, wyrażoną w sekundach lub milisekundach?",
+        options: ["rate", "pitch", "volume", "duration"],
+        correct: 3,
+        explanation: "Atrybut duration w elemencie <prosody> w SSML służy do kontrolowania czasu trwania, który można wyrazić w sekundach lub milisekundach."
+      },
+      {
+        question: "W syntezie mowy opartej na Niejawnych Modelach Markowa (HMM), w jaki sposób modeluje się długości głosek?",
+        options: ["Za pomocą pętli na stanach HMM.", "Długości głosek nie są modelowane.", "Bezpośrednio, korzystając z Ukrytych Modeli Semi-Markowa (HSMM).", "Poprzez algorytm Viterbiego."],
+        correct: 2,
+        explanation: "W syntezie mowy z użyciem Niejawnych Modeli Markowa (HMM), długości głosek modeluje się bezpośrednio, korzystając z Ukrytych Modeli Semi-Markowa (HSMM)."
+      },
+      {
+        question: "Według artykulacyjnej klasyfikacji spółgłosek, czym charakteryzują się spółgłoski twarde?",
+        options: ["Są wymawiane z udziałem środka języka, który tworzy jedną zaporę.", "Są wymawiane bez udziału środka języka, który zalega dno jamy ustnej.", "Są zawsze dźwięczne.", "Są zawsze bezdźwięczne."],
+        correct: 1,
+        explanation: "Spółgłoski twarde są wymawiane bez udziału środka języka, który zalega dno jamy ustnej."
+      },
+      {
+        question: "Co jest kluczowym wymaganiem dla syntezy mowy z wyborem jednostek w odniesieniu do bazy danych nagrań?",
+        options: ["Musi być mała i zawierać tylko jeden egzemplarz każdej jednostki.", "Musi być szczególnie duża i zawierać wiele różnych kopii jednostek (np. diphones).", "Nie ma znaczenia rozmiar bazy, lecz precyzja oznaczeń.", "Wymaga jedynie bazy danych formantów."],
+        correct: 1,
+        explanation: "Synteza z wyborem jednostek polega na wybieraniu i łączeniu nagranych fragmentów mowy z dużej bazy danych w celu wygenerowania płynnej i naturalnie brzmiącej mowy. Wymaga ona szczególnie dużej bazy nagrań, która zawiera wiele godzin nagrań z różnymi kopiami diphones."
+      },
+      {
+        question: "Jakie są dwa główne typy upodobnień (asymilacji) w koartykulacji ze względu na kierunek oddziaływania głosek?",
+        options: ["Redukcja i ubezdźwięcznienie.", "Żywe i martwe.", "Wsteczne i postępowe.", "Udźwięcznianie i zmiękczanie."],
+        correct: 2,
+        explanation: "Ze względu na kierunek oddziaływania, upodobnienia (asymilacje) mogą być wsteczne (głoski mocniej wiążą się z głoską poprzedzającą, zmieniając jej cechy) lub postępowe (głoski mocniej wiążą się z głoską następującą, zmieniając jej cechy). W języku polskim występują upodobnienia żywe wsteczne."
+      },
+      {
+        question: "Który typ splotów stosuje WaveNet w swojej architekturze do modelowania zależności na większe odległości w sygnale audio?",
+        options: ["Sploty przyczynowe (Causal Convolutions).", "Rozszerzone sploty przyczynowe (Dilated Causal Convolutions).", "Sploty 2D.", "Sploty globalne (Global Convolutions)."],
+        correct: 1,
+        explanation: "WaveNet wykorzystuje rozszerzone sploty przyczynowe (Dilated Causal Convolutions), aby umożliwić neuronom w warstwie wyjściowej uzyskanie szerszego kontekstu z warstwy wejściowej, co pozwala modelować zależności na większe odległości w sygnale audio."
+      },
+      {
+        question: "Jaki jest główny cel wprowadzenia czynnika LMSF (Language Model Scaling Factor) w równaniu dekodowania mowy, które łączy model akustyczny i językowy?",
+        options: ["Zwiększenie liczby poprawnie rozpoznanych słów.", "Zmniejszenie roli modelu akustycznego.", "Zredukowanie wagi modelu języka, ponieważ model akustyczny jest poważnie niedoszacowywany.", "Przyspieszenie procesu dekodowania."],
+        correct: 2,
+        explanation: "Czynnik LMSF (Language Model Scaling Factor) jest wprowadzany w równaniu dekodowania mowy jako wykładnik prawdopodobieństwa modelu języka P(W), aby zredukować wagę tego modelu, ponieważ bez niego model akustyczny jest poważnie niedoszacowywany. LMSF przyjmuje zwykle wartości między 5 a 15."
+      },
+      {
+        question: "Jaki jest główny cel wzmocnienia wstępnego (preemphasis) w przetwarzaniu sygnału mowy?",
+        options: ["Zmniejszenie szumu otoczenia.", "Usunięcie przekrzywienia widma (spectral tilt) za pomocą filtra górnoprzepustowego.", "Wygładzenie sygnału za pomocą filtra dolnoprzepustowego.", "Kompresja dynamiczna sygnału."],
+        correct: 1,
+        explanation: "Wzmocnienie wstępne ma za zadanie usunąć przekrzywienie widma, czyli zjawisko, gdzie w widmie mowy więcej energii znajduje się w niskich częstotliwościach, poprzez zastosowanie filtra górnoprzepustowego."
+      },
+      {
+        question: "Co oblicza algorytm 'Do Przodu' (Forward algorithm) w kontekście Ukrytych Modeli Markowa (HMM)?",
+        options: ["Najbardziej prawdopodobny ciąg stanów.", "Prawdopodobieństwo, że zaobserwowano dany ciąg symboli (o1o2...ot) i w chwili t bieżącym stanem był stan i (αi(t)).", "Prawdopodobieństwo pozostawania w danym stanie przez określony czas.", "Oczekiwana liczba przejść ze stanu i do stanu j."],
+        correct: 1,
+        explanation: "Algorytm 'Do Przodu' jest używany do wydajnego obliczania prawdopodobieństwa zaobserwowania danej sekwencji symboli aż do pewnej chwili t, będąc w określonym stanie w tej chwili."
+      },
+      {
+        question: "Jakie są podstawowe części systemu syntezy kanału głosowego (articulatory synthesis)?",
+        options: ["Model sterowania, model kanału głosowego i model akustyczny.", "Moduł normalizacji tekstu, moduł analizy fonetycznej i moduł analizy prozodycznej.", "Generator formantów, filtry szeregowe i filtry równoległe.", "Baza danych nagrań, algorytm TD-PSOLA i funkcja kosztu łączenia."],
+        correct: 0,
+        explanation: "Synteza kanału głosowego modeluje fizyczne właściwości narządów mowy i składa się z trzech głównych części: modelu sterowania (odpowiadającego za ruch narządów mowy), modelu kanału głosowego (przekształcającego ruch na kształt kanału) oraz modelu akustycznego (tworzącego dźwięk na podstawie kształtu kanału)."
+      },
+      {
+        question: "Zgodnie z artykulacyjną klasyfikacją spółgłosek, który typ spółgłosek jest tworzony, gdy środek języka stanowi główne miejsce artykulacji i tworzy jedną zaporę?",
+        options: ["Spółgłoski twarde.", "Spółgłoski zmiękczone.", "Spółgłoski miękkie.", "Spółgłoski szczelinowe."],
+        correct: 2,
+        explanation: "Spółgłoski miękkie charakteryzują się tym, że środek języka stanowi główne miejsce artykulacji i tworzy jedną zaporę."
+      },
+      {
+        question: "Na czym polega metoda wygładzania 'dodaj k' (add-k smoothing) w modelach N-gramowych?",
+        options: ["Na dodawaniu jedności do wszystkich zliczeń N-gramów.", "Na wykorzystywaniu N-gramów niższych rzędów, gdy N-gram bieżącego rzędu jest zerowy.", "Na dodawaniu małego ułamka 'k' (obliczanego na osobnym zbiorze tekstów) do wszystkich zliczeń N-gramów.", "Na liniowej kombinacji prawdopodobieństw warunkowych z N-gramów różnego rzędu."],
+        correct: 2,
+        explanation: "Metoda 'dodaj k' jest rozwinięciem metody Laplace'a, gdzie zamiast jedności dodaje się mały ułamek 'k' do wszystkich zliczeń N-gramów, aby uniknąć problemów z zerowymi prawdopodobieństwami."
+      },
+      {
+        question: "Które stwierdzenie jest prawdziwe w odniesieniu do akcentu wyrazowego w języku polskim?",
+        options: ["Jest akcentem iloczasowym, który pada na dowolną sylabę.", "Jest akcentem tonicznym i ruchomym.", "Jest akcentem przyciskowym, stałym i paroksytonicznym.", "Charakteryzuje się akcentem inicjalnym."],
+        correct: 2,
+        explanation: "Polski akcent wyrazowy jest przyciskowy (dynamiczny), stały (pada w tym samym miejscu, zazwyczaj na przedostatnią sylabę) i paroksytoniczny (pada na przedostatnią sylabę)."
+      },
+      {
+        question: "Co oblicza algorytm 'Do Tyłu' (Backward algorithm) w kontekście Ukrytych Modeli Markowa (HMM)?",
+        options: ["Najbardziej prawdopodobny ciąg stanów.", "Prawdopodobieństwo, że zaobserwowano dany ciąg symboli od chwili t+1 do T, będąc w stanie i w chwili t (βi(t)).", "Prawdopodobieństwo pozostawania w danym stanie przez określony czas.", "Oczekiwana liczba przejść ze stanu i do stanu j."],
+        correct: 1,
+        explanation: "Algorytm 'Do Tyłu' oblicza βi(t), które reprezentuje prawdopodobieństwo zaobserwowania pozostałej części sekwencji obserwacji (od chwili t+1 do T), pod warunkiem, że model znajduje się w stanie i w chwili t."
+      },
+      {
+        question: "Jakie jest główne zastosowanie połączeń resztkowych (residual connections) i bocznych (skip-connections) w architekturze WaveNet?",
+        options: ["Umożliwiają szybszą naukę płytszych sieci neuronowych poprzez redukcję liczby parametrów.", "Zwiększają problem zanikającego gradientu, co prowadzi do bardziej stabilnego uczenia.", "Pomagają zmniejszyć problem zanikającego gradientu, umożliwiając szybszą naukę głębszych sieci neuronowych.", "Służą do kwantyzacji sygnału mowy do mniejszej liczby wartości."],
+        correct: 2,
+        explanation: "Zarówno połączenia resztkowe, jak i boczne w WaveNet przyczyniają się do zmniejszenia problemu zanikającego gradientu, co umożliwia szybsze uczenie głębszych sieci neuronowych."
+      },
+      {
+        question: "Jaki jest główny cel języka VoiceXML?",
+        options: ["Służy do zapisu słownika wymowy dla syntezy i rozpoznawania mowy.", "Umożliwia określenie gramatyki do rozpoznawania mowy.", "Jest językiem do opisu składni rozmowy z wykorzystaniem syntezy mowy i rozpoznawania mowy/DTMF.", "Definiuje style audialne dla dokumentów XML."],
+        correct: 2,
+        explanation: "VoiceXML (Voice Extensible Markup Language) to język przeznaczony do opisu składni rozmów, gdzie synteza mowy jest wyjściem, a rozpoznawanie mowy lub DTMF (Dual-Tone Multi-Frequency) są wejściem."
+      },
+      {
+        question: "Jaka jest relacja między literami a głoskami w języku polskim?",
+        options: ["Jedna litera odpowiada zawsze jednemu dźwiękowi.", "Relacja litera – głoska jest typu wiele – wiele.", "Alfabet fonetyczny języka polskiego składa się z 32 dźwięków.", "Wszystkie głoski języka polskiego zapisuje się w prosty sposób w Międzynarodowym Alfabecie Fonetycznym (IPA)."],
+        correct: 1,
+        explanation: "W języku polskim alfabet składa się z 32 liter, natomiast alfabet fonetyczny z około 78 dźwięków, co oznacza, że relacja między literą a głoską jest typu 'wiele – wiele'. Ponadto, niektóre głoski polskie są zapisywane w IPA w dość skomplikowany sposób."
+      },
+      {
+        question: "Jaki jest jeden z dwóch podstawowych kryteriów oceny syntezatorów mowy?",
+        options: ["Efektywność energetyczna.", "Zrozumiałość.", "Koszt implementacji.", "Złożoność algorytmiczna."],
+        correct: 1,
+        explanation: "Dwa podstawowe kryteria oceny syntezatorów mowy to zrozumiałość i naturalność."
+      },
+      {
+        question: "Jakie jest główne zastosowanie techniki 'BlackOut' w neuronowych modelach języka?",
+        options: ["Zwiększenie liczby parametrów modelu.", "Zmniejszenie liczby obliczeń w trakcie uczenia i zapobieganie przeuczeniu.", "Poprawa jakości modelu języka poprzez dodawanie szumu.", "Wprowadzenie kary za zbyt duże wagi w modelu."],
+        correct: 1,
+        explanation: "BlackOut to technika, która zmniejsza liczbę obliczeń podczas uczenia modelu języka i jednocześnie zwiększa jego zdolność do uogólniania, zapobiegając przeuczeniu."
+      },
+      {
+        question: "Jaki jest główny cel klasyfikatora w systemie DeepNorm używanym do normalizacji tekstu?",
+        options: ["Przetwarzanie wszystkich elementów tekstu za pomocą modelu RNN.", "Rozdzielanie elementów tekstu na te do normalizacji i te bez normalizacji, aby uniknąć kosztownego przetwarzania większości.", "Generowanie nowych słów w tekście.", "Tłumaczenie tekstu na inny język."],
+        correct: 1,
+        explanation: "Klasyfikator w systemie DeepNorm ma za zadanie przyporządkowywać elementy tekstu do klas 'semiotycznych' i rozdzielać je na te wymagające normalizacji oraz te, które jej nie potrzebują, co pozwala uniknąć kosztownego przetwarzania przez model RNN dla większości tekstu."
+      },
+      {
+        question: "Jak nazywa się miara stosowana do oceny modeli języka, która dla ciągu słów (w1...wK) jest pierwiastkiem K-tego stopnia z iloczynu odwrotności prawdopodobieństw warunkowych każdego słowa?",
+        options: ["Word Error Rate (WER).", "Accuracy.", "Perplexity (PPL).", "F1-score."],
+        correct: 2,
+        explanation: "Perplexity (PPL) to jedna z dwóch głównych miar stosowanych do oceny modeli języka, obliczana jako pierwiastek K-tego stopnia z iloczynu odwrotności prawdopodobieństw warunkowych każdego słowa w danym ciągu."
+      }
+      
+    ];
+
     function shuffleArray(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -509,49 +932,54 @@
       return arr;
     }
 
-    const shuffledQuiz = shuffleArray(quizData.map((item, idx) => {
-      const options = item.options.map((opt, i) => ({ text: opt, originalIndex: i }));
-      shuffleArray(options);
-      const newCorrectIndex = options.findIndex(o => o.originalIndex === item.correct);
-      return {
-        question: item.question,
-        options: options.map(o => o.text),
-        correct: newCorrectIndex
-      };
-    }));
+    function renderQuiz(quizData, containerId, prefix) {
+      const shuffledQuiz = shuffleArray(quizData.map((item, idx) => {
+        const options = item.options.map((opt, i) => ({ text: opt, originalIndex: i }));
+        shuffleArray(options);
+        const newCorrectIndex = options.findIndex(o => o.originalIndex === item.correct);
+        return {
+          question: item.question,
+          options: options.map(o => o.text),
+          correct: newCorrectIndex,
+          explanation: typeof item.explanation !== "undefined" ? item.explanation : ""
+        };
+      }));
 
-    const form = document.getElementById('quizForm');
+      const form = document.getElementById(containerId);
 
-    shuffledQuiz.forEach((item, index) => {
-      const qDiv = document.createElement('div');
-      qDiv.className = 'question';
-      const qName = `q${index}`;
+      shuffledQuiz.forEach((item, index) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+        const qName = `${prefix}${index}`;
 
-      const qHTML = [`<p><strong>${index + 1}. ${item.question}</strong></p>`];
-      item.options.forEach((opt, i) => {
-        qHTML.push(`<label><input type="radio" name="${qName}" value="${i}"> ${opt}</label><br>`);
+        const qHTML = [`<p><strong>${index + 1}. ${item.question}</strong></p>`];
+        item.options.forEach((opt, i) => {
+          qHTML.push(`<label><input type="radio" name="${qName}" value="${i}"> ${opt}</label><br>`);
+        });
+        qHTML.push(`<div class="feedback" id="feedback-${qName}"></div>`);
+        qDiv.innerHTML = qHTML.join('');
+        form.appendChild(qDiv);
       });
-      qHTML.push(`<div class="feedback" id="feedback-${qName}"></div>`);
-      qDiv.innerHTML = qHTML.join('');
-      form.appendChild(qDiv);
-    });
 
-    document.querySelectorAll('.question').forEach((question, qIdx) => {
-      const name = `q${qIdx}`;
-      const correct = shuffledQuiz[qIdx].correct;
-      question.querySelectorAll('input[type="radio"]').forEach(input => {
-        input.addEventListener('change', () => {
-          const feedback = document.getElementById(`feedback-${name}`);
-          if (parseInt(input.value) === correct) {
-            feedback.textContent = 'Dobrze!';
-            feedback.className = 'feedback correct';
-          } else {
-            feedback.textContent = 'Źle!';
-            feedback.className = 'feedback incorrect';
-          }
+      document.querySelectorAll(`#${containerId} .question`).forEach((question, qIdx) => {
+        const name = `${prefix}${qIdx}`;
+        const correct = shuffledQuiz[qIdx].correct;
+        const explanation = shuffledQuiz[qIdx].explanation;
+        question.querySelectorAll('input[type="radio"]').forEach(input => {
+          input.addEventListener('change', () => {
+            const feedback = document.getElementById(`feedback-${name}`);
+            if (parseInt(input.value) === correct) {
+              feedback.innerHTML = `<span class="correct">Dobrze!</span><br><em>${explanation}</em>`;
+            } else {
+              feedback.innerHTML = `<span class="incorrect">Źle!</span><br><em>${explanation}</em>`;
+            }
+          });
         });
       });
-    });
+    }
+
+    renderQuiz(quizData1, 'quizForm1', 'q1_');
+    renderQuiz(quizData2, 'quizForm2', 'q2_');
   </script>
 </body>
 </html>
