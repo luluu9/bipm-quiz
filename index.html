@@ -604,30 +604,6 @@
         explanation: "Polski akcent wyrazowy jest przyciskowy (dynamiczny), stały (pada w tym samym miejscu, zazwyczaj na przedostatnią sylabę) i paroksytoniczny."
       },
       {
-        question: "Jakie jest główne zadanie wzmocnienia wstępnego (preemphasis) w przetwarzaniu sygnału mowy?",
-        options: ["Zmniejszenie szumu otoczenia", "Usunięcie przekrzywienia widma (spectral tilt) za pomocą filtra górnoprzepustowego.", "Wygładzenie sygnału za pomocą filtra dolnoprzepustowego.", "Kompresja dynamiczna sygnału"],
-        correct: 1,
-        explanation: "Wzmocnienie wstępne (preemphasis) ma za zadanie usunąć przekrzywienie widma (spectral tilt) za pomocą filtra górnoprzepustowego."
-      },
-      {
-        question: "Co oblicza algorytm 'Do Przodu' (Forward algorithm) w kontekście Ukrytych Modeli Markowa (HMM)?",
-        options: ["Najbardziej prawdopodobny ciąg stanów", "Prawdopodobieństwo, że zaobserwowano dany ciąg symboli (o1o2...ot) i w chwili t bieżącym stanem był stan i (αi(t)).", "Prawdopodobieństwo pozostawania w danym stanie przez określony czas.", "Oczekiwana liczba przejść ze stanu i do stanu j"],
-        correct: 1,
-        explanation: "Algorytm 'Do Przodu' (Forward algorithm) oblicza wartość αi(t), która reprezentuje prawdopodobieństwo zaobserwowania sekwencji o1o2...ot i bycia w stanie i w chwili t."
-      },
-      {
-        question: "Jaki jest cel wprowadzenia kary za wstawianie słów (WIP - Word Insertion Penalty) w równaniu dekodowania mowy, uwzględniającym model akustyczny i model języka?",
-        options: ["Zwiększenie roli modelu akustycznego", "Zmniejszenie liczby błędów podstawień (substitution errors).", "Zrównoważenie faworyzowania przez model języka mniejszej liczby dłuższych słów.", "Przyspieszenie procesu dekodowania"],
-        correct: 2,
-        explanation: "Kara za wstawianie słów (WIP) jest wprowadzana, ponieważ model języka ma tendencję do faworyzowania krótszych wypowiedzi lub mniejszej liczby dłuższych słów."
-      },
-      {
-        question: "Które z wymienionych elementów są podstawowymi częściami systemu syntezy kanału głosowego (articulatory synthesis)?",
-        options: ["Model sterowania, model kanału głosowego i model akustyczny", "Moduł normalizacji tekstu, moduł analizy fonetycznej i moduł analizy prozodycznej.", "Generator formantów, filtry szeregowe i filtry równoległe.", "Baza danych nagrań, algorytm TD-PSOLA i funkcja kosztu łączenia"],
-        correct: 0,
-        explanation: "System syntezy kanału głosowego składa się z trzech głównych części: modelu sterowania, modelu kanału głosowego i modelu akustycznego."
-      },
-      {
         question: "W języku SSML, jak można kontrolować atrybut pitch (wysokość głosu) w elemencie <prosody>?",
         options: ["Wyłącznie za pomocą symbolicznych wartości, takich jak 'x-low' lub 'x-high'", "Za pomocą procentowej zmiany szybkości mówienia.", "Wyrażając go jako częstotliwość w Hz, względną zmianę (procenty, Hz, półtony) lub symbolicznie.", "Poprzez określenie czasu trwania w sekundach"],
         correct: 2,
@@ -790,12 +766,6 @@
         explanation: "Polski akcent wyrazowy jest przyciskowy, jednostajny i stały, padający na przedostatnią sylabę (paroksytoniczny), jednak istnieją wyjątki w wymowie wyrazów pochodzenia obcego."
       },
       {
-        question: "Który typ syntezy mowy modeluje fizyczne właściwości poszczególnych narządów uczestniczących w wymowie?",
-        options: ["Synteza formantów", "Synteza z wyborem jednostek", "Synteza modelująca kanał głosowy (articulatory synthesis)", "Synteza oparta na niejawnych modelach Markowa"],
-        correct: 2,
-        explanation: "Synteza kanału głosowego modeluje fizyczne właściwości poszczególnych narządów uczestniczących w wymowie, w odróżnieniu od syntezy formantów."
-      },
-      {
         question: "Który atrybut elementu <prosody> w SSML pozwala na kontrolę czasu trwania wypowiedzi, wyrażoną w sekundach lub milisekundach?",
         options: ["rate", "pitch", "volume", "duration"],
         correct: 3,
@@ -836,12 +806,6 @@
         options: ["Zwiększenie liczby poprawnie rozpoznanych słów.", "Zmniejszenie roli modelu akustycznego.", "Zredukowanie wagi modelu języka, ponieważ model akustyczny jest poważnie niedoszacowywany.", "Przyspieszenie procesu dekodowania."],
         correct: 2,
         explanation: "Czynnik LMSF (Language Model Scaling Factor) jest wprowadzany w równaniu dekodowania mowy jako wykładnik prawdopodobieństwa modelu języka P(W), aby zredukować wagę tego modelu, ponieważ bez niego model akustyczny jest poważnie niedoszacowywany. LMSF przyjmuje zwykle wartości między 5 a 15."
-      },
-      {
-        question: "Jaki jest główny cel wzmocnienia wstępnego (preemphasis) w przetwarzaniu sygnału mowy?",
-        options: ["Zmniejszenie szumu otoczenia.", "Usunięcie przekrzywienia widma (spectral tilt) za pomocą filtra górnoprzepustowego.", "Wygładzenie sygnału za pomocą filtra dolnoprzepustowego.", "Kompresja dynamiczna sygnału."],
-        correct: 1,
-        explanation: "Wzmocnienie wstępne ma za zadanie usunąć przekrzywienie widma, czyli zjawisko, gdzie w widmie mowy więcej energii znajduje się w niskich częstotliwościach, poprzez zastosowanie filtra górnoprzepustowego."
       },
       {
         question: "Co oblicza algorytm 'Do Przodu' (Forward algorithm) w kontekście Ukrytych Modeli Markowa (HMM)?",
